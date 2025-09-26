@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Study Planner</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1><i class="fas fa-graduation-cap"></i> Smart Study Planner</h1>
+            <div class="header-actions">
+                <button class="btn btn-primary" onclick="showAddTaskModal()">
+                    <i class="fas fa-plus"></i> Add Task
+                </button>
+                <button class="btn btn-secondary" onclick="showAddGoalModal()">
+                    <i class="fas fa-target"></i> Add Goal
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Panel - Goals -->
+            <div class="left-panel">
+                <h2><i class="fas fa-target"></i> Study Goals</h2>
+                <div class="goals-container" id="goalsContainer">
+                    <!-- Goals will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Right Panel - Tasks -->
+            <div class="right-panel">
+                <div class="tasks-header">
+                    <h2><i class="fas fa-tasks"></i> Tasks</h2>
+                    <div class="task-filters">
+                        <button class="filter-btn active" onclick="filterTasks('all')">All</button>
+                        <button class="filter-btn" onclick="filterTasks('pending')">Pending</button>
+                        <button class="filter-btn" onclick="filterTasks('completed')">Completed</button>
+                    </div>
+                </div>
+                <div class="tasks-container" id="tasksContainer">
+                    <!-- Tasks will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Panel - Progress & Timeline -->
+        <div class="bottom-panel">
+            <div class="progress-section">
+                <h3><i class="fas fa-chart-line"></i> Progress Overview</h3>
+                <div class="progress-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalTasks">0</span>
+                        <span class="stat-label">Total Tasks</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="completedTasks">0</span>
+                        <span class="stat-label">Completed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="progressPercentage">0%</span>
+                        <span class="stat-label">Progress</span>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+            
+            <div class="timeline-section">
+                <h3><i class="fas fa-calendar-alt"></i> Timeline View</h3>
+                <div class="timeline-container" id="timelineContainer">
+                    <!-- Timeline items will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div class="modal" id="taskModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="taskModalTitle">Add New Task</h3>
+                <span class="close" onclick="closeModal('taskModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="taskForm">
+                    <div class="form-group">
+                        <label for="taskTitle">Task Title *</label>
+                        <input type="text" id="taskTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskSubject">Subject</label>
+                        <input type="text" id="taskSubject">
+                    </div>
+                    <div class="form-group">
+                        <label for="taskDeadline">Deadline *</label>
+                        <input type="date" id="taskDeadline" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskPriority">Priority</label>
+                        <select id="taskPriority">
+                            <option value="Low">Low</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskGoal">Link to Goal</label>
+                        <select id="taskGoal">
+                            <option value="">No Goal</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('taskModal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Task</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Goal Modal -->
+    <div class="modal" id="goalModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="goalModalTitle">Add New Goal</h3>
+                <span class="close" onclick="closeModal('goalModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="goalForm">
+                    <div class="form-group">
+                        <label for="goalTitle">Goal Title *</label>
+                        <input type="text" id="goalTitle" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('goalModal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Goal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
